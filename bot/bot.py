@@ -77,7 +77,7 @@ class Bot(ChaiBot):
     def getScore(self):
         message = (
             f"\nRound {self.currentRound} of {self.numberOfRounds}, "
-            + f"\nScore: {self.score[0]}:{self.score[1]}"
+            + f"\nScore: {self.score[0]}:{self.score[1]}, "
             + f"\nDynamite 🧨 left: {self.dynamiteLeft[0]}:{self.dynamiteLeft[1]}"
         )
 
