@@ -18,9 +18,9 @@ class Bot(ChaiBot):
 
     def setup(self):
         self.logger.info("Setting up...")
-        resetScores()
+        self.resetScores()
 
-    def resetScores():
+    def resetScores(self):
         self.dynamiteLeft = [2, 2]  # [bot, user]
         self.score = [0, 0]  # [bot, user]
         self.currentRound = 0
@@ -46,7 +46,7 @@ class Bot(ChaiBot):
             userMove = 1
         elif "scissors" in userResponse:
             userMove = 2
-        elif "water bomb" in userResponse:
+        elif "water" in userResponse or "bomb" in userResponse:
             userMove = 3
         elif "dynamite" in userResponse:
             userMove = 4
@@ -82,7 +82,7 @@ class Bot(ChaiBot):
         )
 
         if self.currentRound == self.numberOfRounds:
-            self.setup()
+            self.resetScores()
             message += f", \n"
             if self.score[0] > self.score[1]:
                 message += f"I win the round 🎊🎊🎊"
