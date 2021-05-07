@@ -17,6 +17,10 @@ class Bot(ChaiBot):
     )
 
     def setup(self):
+        self.logger.info("Setting up...")
+        resetScores()
+
+    def resetScores():
         self.dynamiteLeft = [2, 2]  # [bot, user]
         self.score = [0, 0]  # [bot, user]
         self.currentRound = 0
