@@ -1,2 +1,3 @@
-root/bot/credentials.py
+bot/credentials.py
 __pycache__
+bot/__pycache__
