@@ -78,7 +78,7 @@ class Bot(ChaiBot):
         message = (
             f"\n\nRound {self.currentRound} of {self.numberOfRounds} "
             + f"\n\nScore: {self.score[0]}-{self.score[1]} "
-            + f"\n\nDynamite 🧨 left: {self.dynamiteLeft[0]}:{self.dynamiteLeft[1]}"
+            + f"\n\nDynamite 🧨 left: {self.dynamiteLeft[0]}-{self.dynamiteLeft[1]}"
         )
 
         if self.currentRound == self.numberOfRounds:
