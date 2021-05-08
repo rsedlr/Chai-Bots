@@ -82,7 +82,6 @@ class Bot(ChaiBot):
         )
 
         if self.currentRound == self.numberOfRounds:
-            self.resetScores()
             message += f", \n\n"
             if self.score[0] > self.score[1]:
                 message += f"**I win the round 🎊🎊🎊**"
@@ -91,6 +90,7 @@ class Bot(ChaiBot):
             else:
                 message += f"**It's a draw!**"
             message += f"\n\nWanna play again? {self.HELP_TEXT}"
+            self.resetScores()
         return message
 
     def userWin(self, botMove):
