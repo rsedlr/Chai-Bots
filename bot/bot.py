@@ -76,14 +76,14 @@ class Bot(ChaiBot):
 
     def getScore(self):
         message = (
-            f"\nRound {self.currentRound} of {self.numberOfRounds}, "
-            + f"\nScore: {self.score[0]}:{self.score[1]}, "
-            + f"\nDynamite 🧨 left: {self.dynamiteLeft[0]}:{self.dynamiteLeft[1]}"
+            f"\n\nRound {self.currentRound} of {self.numberOfRounds} "
+            + f"\n\nScore: {self.score[0]}-{self.score[1]} "
+            + f"\n\nDynamite 🧨 left: {self.dynamiteLeft[0]}:{self.dynamiteLeft[1]}"
         )
 
         if self.currentRound == self.numberOfRounds:
             self.resetScores()
-            message += f", \n"
+            message += f", \n\n"
             if self.score[0] > self.score[1]:
                 message += f"I win the round 🎊🎊🎊"
             elif self.score[0] == self.score[1]:
