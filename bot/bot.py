@@ -3,7 +3,7 @@ from chai_py import ChaiBot, Update
 
 
 class Bot(ChaiBot):
-    numberOfRounds = 15
+    numberOfRounds = 10
     moves = ["Rock 🪨", "Paper 📰", "Scissors ✂️", "Water Bomb 💦", "Dynamite 🧨"]
     winningMoves = {
         0: 2,  # Rock beats Scissors
@@ -85,12 +85,12 @@ class Bot(ChaiBot):
             self.resetScores()
             message += f", \n\n"
             if self.score[0] > self.score[1]:
-                message += f"I win the round 🎊🎊🎊"
-            elif self.score[0] == self.score[1]:
-                message += f"It's a draw!"
+                message += f"**I win the round 🎊🎊🎊**"
+            elif self.score[0] < self.score[1]:
+                message += f"**You win the round 🎉🎉🎉**"
             else:
-                message += f"You win the round 🎉🎉🎉"
-            message += f" Want to play again? {self.HELP_TEXT}"
+                message += f"**It's a draw!**"
+            message += f"\n\nWanna play again? {self.HELP_TEXT}"
         return message
 
     def userWin(self, botMove):
