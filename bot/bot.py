@@ -95,11 +95,11 @@ class Bot(ChaiBot):
 
     def userWin(self, botMove):
         self.score[1] += 1
-        return f"{self.moves[botMove]}  - You win 🎉 {self.getScore()}"
+        return f"{self.moves[botMove]}  - **You win 🎉** {self.getScore()}"
 
     def botWin(self, botMove):
         self.score[0] += 1
-        return f"{self.moves[botMove]}  - I win 🎊 {self.getScore()}"
+        return f"{self.moves[botMove]}  - **I win 🎊** {self.getScore()}"
 
     def draw(self, botMove):
-        return f"{self.moves[botMove]}  - Draw! {self.getScore()}"
+        return f"{self.moves[botMove]}  - **Draw!** {self.getScore()}"
