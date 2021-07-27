@@ -7,6 +7,7 @@ import re
 # if an invalid response is given, repeat the question
 # add more Q's
 # remove ability to restart over at any point? is that really helpful?
+# change 'a' to 'an' on percentages that start with a vowel
 
 
 class Bot(ChaiBot):
