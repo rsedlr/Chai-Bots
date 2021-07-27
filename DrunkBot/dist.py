@@ -9,16 +9,16 @@ from bot.bot import Bot
 
 set_auth(DEVELOPER_UID, DEVELOPER_KEY)
 
-BOT_IMAGE_URL = "https://static.vecteezy.com/system/resources/previews/000/690/865/non_2x/rock-paper-scissors-line-icons-vector.jpg"
-# BOT_IMAGE_URL="https://picsum.photos/seed/example_bot/256/256"
+# BOT_IMAGE_URL = "https://static.vecteezy.com/system/resources/previews/000/690/865/non_2x/rock-paper-scissors-line-icons-vector.jpg"
+BOT_IMAGE_URL = "https://picsum.photos/seed/example_bot/256/256"
 
 
 package(
     Metadata(
-        name="Rock Paper Scissors Bot",
+        name="Drunk Check Bot",
         image_url=BOT_IMAGE_URL,
         color="f1a2b3",
-        description="Lets play Rock Paper Scissors Dynamite Water Bomb! \nDynamite beats everything except Water Bomb, Water Bomb beats Dynamite and nothing else. 🪨 📰 ✂️ 🧨 💦",
+        description="Am I drunk? Lets find out",
         input_class=Bot,
         developer_uid=DEVELOPER_UID,
         # memory=3000,
