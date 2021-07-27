@@ -9,21 +9,23 @@ from bot.bot import Bot
 
 set_auth(DEVELOPER_UID, DEVELOPER_KEY)
 
-# BOT_IMAGE_URL = "https://static.vecteezy.com/system/resources/previews/000/690/865/non_2x/rock-paper-scissors-line-icons-vector.jpg"
-BOT_IMAGE_URL = "https://picsum.photos/seed/example_bot/256/256"
+BOT_IMAGE_URL = (
+    "https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116"
+)
+# BOT_IMAGE_URL = "https://picsum.photos/seed/example_bot/256/256"
 
 
 package(
     Metadata(
         name="Drunk Check Bot",
         image_url=BOT_IMAGE_URL,
-        color="f1a2b3",
-        description="Am I drunk? Lets find out",
+        color="ff0000",
+        description="Lets find out if you're drunk! 🍺🍸🍷",
         input_class=Bot,
         developer_uid=DEVELOPER_UID,
         # memory=3000,
     ),
-    # requirements=["random"],
+    # requirements=["re"],
 )
 
 print()
