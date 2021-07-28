@@ -16,13 +16,16 @@ class Bot(ChaiBot):
     scaleMessage = "On a scale of 0 to 10, how well can you"
 
     questions = [  # [question, is10Good?]
-        [f"{scaleMessage} walk in a straight line?", True],
-        ["How many drinks you have had? If you can't remember put '10'", False],
-        [f"{scaleMessage} close your eyes and touch your nose?", True],
+        [f"{scaleMessage} walk in a straight line?", 1, True],
+        ["How many drinks you have had? If you can't remember put '10'", -1, True],
+        [f"{scaleMessage} close your eyes and touch your nose?", 1, True],
+        [f"Did you text your ex at any point tonight?", 2, True],
+        [f"Can you remember your last drink?", 2, True],
+        [f"What's 12x12?", 3, True, "144"],  # randomise??
     ]
     usedQuestionIndexes = []
     prevQuestionIndex = -1
-    prevQuestionIs10Good = True  # value doesn't matter on init
+    prevQuestionPositive = True  # value doesn't matter on init
     questionsOver = False
 
     drunkLevelEmojis = ["😇", "😃", "😅", "😬", "🥴"]
@@ -49,7 +52,11 @@ class Bot(ChaiBot):
             else:
                 errorMessage = self.calcScore(userResponse)
                 if errorMessage:
-                    return errorMessage  # clean up
+                    return (
+                        errorMessage
+                        + "\n\n"
+                        + self.questions[self.prevQuestionIndex][0]
+                    )
 
                 if self.checkDone():
                     percentage = self.getPercentage()
@@ -61,18 +68,28 @@ class Bot(ChaiBot):
             return question
 
     def calcScore(self, userResponse):
-        number = re.search(r"\d+", userResponse)
+        questionCode = self.questions[self.prevQuestionIndex][1]
 
-        if number:
-            number = int(number.group(0))
-            if 0 <= number <= 10:
-                if self.prevQuestionIs10Good:
-                    number = 10 - number
-                self.score += number
+        if 2 <= questionCode <= 3:
+            if "yes" in userResponse:
+                self.score += 5
+            elif "no" in userResponse:
+                self.score += 5
             else:
-                return f"Number must be between 0 and 10 😕"
+                return f"Could not detect a 'yes' or 'no' in your response 😕"
         else:
-            return f"Could not detect a number in your response 😕"
+            number = re.search(r"\d+", userResponse)
+
+            if number:
+                number = int(number.group(0))
+                if 0 <= number <= 10:
+                    if self.prevQuestionPositive:
+                        number = 10 - number
+                    self.score += number
+                else:
+                    return f"Number must be between 0 and 10 😕"
+            else:
+                return f"Could not detect a number in your response 😕"
 
     def checkDone(self):
         return len(self.usedQuestionIndexes) == len(self.questions)
@@ -91,6 +108,6 @@ class Bot(ChaiBot):
 
         self.usedQuestionIndexes.append(index)
         self.prevQuestionIndex = index
-        self.prevQuestionIs10Good = self.questions[index][1]
+        self.prevQuestionPositive = self.questions[index][1]
 
         return self.questions[index][0]

@@ -9,21 +9,19 @@ from bot.bot import Bot
 
 set_auth(DEVELOPER_UID, DEVELOPER_KEY)
 
-BOT_IMAGE_URL = (
-    "https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116"
-)
+BOT_IMAGE_URL = "https://image.emojipng.com/971/35971.jpg"
 # BOT_IMAGE_URL = "https://picsum.photos/seed/example_bot/256/256"
 
 
 package(
     Metadata(
-        name="Drunk Check Bot",
+        name="Joe",
         image_url=BOT_IMAGE_URL,
-        color="ff0000",
-        description="Lets find out if you're drunk! 🍺🍸🍷🍹",
+        color="0000ff",
+        description="Hey, come chat with me!",
         input_class=Bot,
         developer_uid=DEVELOPER_UID,
-        # memory=3000,
+        memory=512,
     ),
     # requirements=["re"],
 )
