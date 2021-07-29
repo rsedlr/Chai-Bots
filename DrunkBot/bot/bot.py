@@ -37,6 +37,7 @@ class Bot(ChaiBot):
 
     def resetQuestions(self):
         self.score = 0
+        self.maxScore = 0
         self.prevQuestionIndex = -1
         self.usedQuestionIndexes = []
         self.questionsOver = False
@@ -67,7 +68,7 @@ class Bot(ChaiBot):
                     return f"Theres a {percentage}% chance you're drunk! {emoji} \n\nType anything to start again"  # reword?
 
             question = self.getQuestion()
-            return str(self.score) + ", " + question
+            return question
 
     def calcScore(self, userResponse):
         questionCode = self.questions[self.prevQuestionIndex][1]
