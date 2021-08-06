@@ -4,9 +4,7 @@ from sagemaker.huggingface import HuggingFace
 
 # gets role for executing training job
 iam_client = boto3.client("iam")
-role = iam_client.get_role(
-    RoleName="arn:aws:iam::777605307032:role/service-role/AmazonSageMaker-ExecutionRole-20210729T123040"
-)["Role"]["Arn"]
+role = iam_client.get_role(RoleName="ExecutionRole")["Role"]["Arn"]
 
 hyperparameters = {
     "model_name_or_path": "microsoft/DialoGPT-small",

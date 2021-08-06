@@ -4,18 +4,19 @@ import time
 
 from chai_py import ChaiBot, Update
 
+# TODO:
+
 
 class Bot(ChaiBot):
+
+    contextLength = 5
+
     def setup(self):
-        self.ENDPOINT = (
-            # "https://api-inference.huggingface.co/models/hyunwoongko/reddit-3B"
-            # "https://api-inference.huggingface.co/models/abhiramtirumala/DialoGPT-sarcastic"
-            "https://api-inference.huggingface.co/models/odinmay/joebot"
-        )
+        self.ENDPOINT = "https://api-inference.huggingface.co/models/rsedlr/RickBot"  # dialogpt output small works :)
         self.headers = {
             "Authorization": "Bearer api_oieZbocfGuGxzuQozzaqpFYnBrpBsSLwzP"
         }
-        self.first_response = "Hey, I'm Joe."
+        self.first_response = "Hey, I'm Rick."
 
     async def on_message(self, update: Update) -> str:
         if update.latest_message.text == self.FIRST_MESSAGE_STRING:
@@ -40,20 +41,28 @@ class Bot(ChaiBot):
 
     async def get_payload(self, update):
         messages = await self.get_messages(update.conversation_id)
-        past_user_inputs = ["Hey", "How old are you?"]  # You can change this!
-        generated_responses = [self.first_response, "69 years old"]
+        past_user_inputs = ["Hey"]  # You can change this!
+        generated_responses = [self.first_response]
         for message in messages:
             content = message.content
             if content == self.FIRST_MESSAGE_STRING:
                 continue  # We're not trying to keep track of our FIRST_MESSAGE_STRING (i.e. "__first")
             if message.sender_uid == self.uid:
-                past_user_inputs.append(
-                    content
-                )  # Put the user's messages into past_user_inputs
+                # Put the user's messages into past_user_inputs
+                past_user_inputs.append(content)
+
+                if len(past_user_inputs) > self.contextLength:
+                    past_user_inputs = past_user_inputs[1:]
+                    # del past_user_inputs[: self.contextLength]
+
             else:
-                generated_responses.append(
-                    content
-                )  # Put the model generated messages into here
+                # Put the model generated messages into here
+                generated_responses.append(content)
+
+                if len(generated_responses) > self.contextLength:
+                    generated_responses = generated_responses[1:]
+                    # del generated_responses[: self.contextLength]
+
             return {
                 "inputs": {
                     "past_user_inputs": past_user_inputs,

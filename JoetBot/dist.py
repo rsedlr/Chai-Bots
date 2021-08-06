@@ -21,7 +21,7 @@ package(
         description="Hey, come chat with me!",
         input_class=Bot,
         developer_uid=DEVELOPER_UID,
-        memory=512,
+        memory=3000,
     ),
     # requirements=["re"],
 )

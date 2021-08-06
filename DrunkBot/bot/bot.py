@@ -4,9 +4,7 @@ from chai_py import ChaiBot, Update
 import re
 
 # TODO:
-# if an invalid response is given, repeat the question
 # add more Q's
-# remove ability to restart over at any point? is that really helpful?
 # change 'a' to 'an' on percentages that start with a vowel
 
 
